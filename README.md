@@ -1,18 +1,35 @@
+# WordPress Docker
+
+# 環境設定
+`.env`ファイルを編集
+＊設定例
 ```
-docker run -it --rm \
-    --volumes-from myapp_wordpress_1 \
-    --network container:myapp_wordpress_1 \
-    wordpress:cli user list
+PROJECT_NAME=my-wordpress
+LOCAL_PROTOCOL=http
+LOCAL_PORT=8080
+WP_LOCALE=ja
+WP_ADMIN_USER=admin
+WP_ADMIN_PASSWORD=admin
+WP_ADMIN_EMAIL=admin@example.com
+WP_THEME_NAME=mytheme
+WP_REQUIED_PLUGINS="classic-editor custom-post-type-permalinks wp-multibyte-patch"
 ```
+# セットアップ（初回のみ）
+Dockerの起動
+```
+docker-compose up -d --build
+```
+WordPressの初期設定
+```
+sh bin/wp-init.sh
+```
+# 起動
+```
+docker-compose up -d
+```
+local server: `http://localhost:8080`
 
-
-docker run -it --rm --volumes-from my-wordpress_wordpress_1 --network container:my-wordpress_wordpress_1 wordpress:cli core install  --url="https://localhost:8080" \
-                --title="Wordpress" \
-                --admin_user="admin" \
-                --admin_email="admin@example.com" \
-                --admin_password="admin" \
-
-
-docker run -it --rm --volumes-from '${PROJECT_NAME}-wordpress --network container:'${PROJECT_NAME}-wordpress wordpress:cli wp option update siteurl="https://localhost:8080"
-
-docker exec -it my-wordpress-wordpress env sudo -u www-data wp core install --path="/var/www/html" --url="http://localhost:${SERVER_PORT}" --title="test" --admin_user=admin --admin_password=admin --admin_email=admin@example.com
+# 停止
+```
+docker-compose stop
+```
