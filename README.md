@@ -45,7 +45,7 @@ sh bin/db-import.sh
 ＊`PROJECT_NAME`は.envの`PROJECT_NAME`
 ```sh
 # wordpressコンテナに入る
-docker exec -it my-wordpress-wordpress /bin/bash
+docker exec -it PROJECT_NAME-wordpress /bin/bash
 # www-dataユーザーでwpコマンド実行
 sudo -u www-data wp --info
 ```
@@ -53,7 +53,7 @@ sudo -u www-data wp --info
 ＊`PROJECT_NAME`は.envの`PROJECT_NAME`
 ```sh
 # mysqlコンテナに入りrootでログイン
-docker exec -it my-wordpress-mysql /usr/bin/mysql -u root -p
+docker exec -it PROJECT_NAME-mysql /usr/bin/mysql -u root -p
 Entar Password: root
 # mysqlコマンド実行
 mysql> show databases;
