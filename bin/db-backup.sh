@@ -8,14 +8,14 @@ cd `dirname $0`
 set -o allexport
 [[ -f ../.env ]] && source ../.env
 set +o allexport
-echo "SUFFIXを入力して下さい: " 
-while read -p "" PREFIX ; do
-    if [ -z ${SUFFIX} ]; then
-       SUFFIX='deg'
-    fi
-    docker exec -it ${PROJECT_NAME}-mysql \
-        /usr/bin/mysqldump --defaults-extra-file=/etc/mysql.conf wordpress > \
-        ../db-backup/backup-${SUFFIX}.sql
-    echo "バックアップしました `backup-${SUFFIX}.sql`" 
-    break
-done
+TODAY=$(date "+%Y%m%d")
+echo "============================ \nタグを入力して下さい:[default:${TODAY}] " 
+read SUFFIX
+if [ -z ${SUFFIX} ]; then
+       SUFFIX=${today}
+fi
+docker exec -it ${PROJECT_NAME}-mysql \
+    /usr/bin/mysqldump --defaults-extra-file=/etc/mysql.conf wordpress > \
+    ../db-backup/backup-${SUFFIX}.sql
+echo "バックアップしました `backup-${SUFFIX}.sql` \n" 
+break
