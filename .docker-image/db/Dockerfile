@@ -1,6 +1,6 @@
 # *****************************
-# WordPress公式imageにwp-cliを追加
+# mysqlをshellで使える様に
+# コンテナにconfをコピー
 # *****************************
 FROM mysql:5.7
-# confをコピー
 COPY mysql.conf /etc/
