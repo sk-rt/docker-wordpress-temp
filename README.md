@@ -1,6 +1,6 @@
 # WordPress Docker
-
-# 環境設定
+`mysql:5.7` + `wordpress` + `wp-cli`
+## 環境設定
 `.env`ファイルを編集
 ＊設定例
 ```
@@ -14,22 +14,47 @@ WP_ADMIN_EMAIL=admin@example.com
 WP_THEME_NAME=mytheme
 WP_REQUIED_PLUGINS="classic-editor custom-post-type-permalinks wp-multibyte-patch"
 ```
-# セットアップ（初回のみ）
-Dockerの起動
+## セットアップ（初回のみ）
+### Dockerの起動
 ```
 docker-compose up -d --build
 ```
-WordPressの初期設定
-```
+### WordPressの初期設定
+```sh
 sh bin/wp-init.sh
 ```
-# 起動
-```
+## コンテナ起動
+```sh
 docker-compose up -d
 ```
 local server: `http://localhost:8080`
 
-# 停止
-```
+## 停止
+```sh
 docker-compose stop
+```
+## MySQLのダンプ
+```sh
+sh bin/db-backup.sh
+```
+## MySQLのインポート
+```sh
+sh bin/db-import.sh
+```
+## wp-cli
+＊`PROJECT_NAME`は.envの`PROJECT_NAME`
+```sh
+# wordpressコンテナに入る
+docker exec -it my-wordpress-wordpress /bin/bash
+# www-dataユーザーでwpコマンド実行
+sudo -u www-data wp --info
+```
+## SQL
+＊`PROJECT_NAME`は.envの`PROJECT_NAME`
+```sh
+# mysqlコンテナに入りrootでログイン
+docker exec -it my-wordpress-mysql /usr/bin/mysql -u root -p
+Entar Password: root
+# mysqlコマンド実行
+mysql> show databases;
 ```
