@@ -16,13 +16,13 @@ if [ "$INS_CORE" = 'yes' ] || [ "$INS_CORE" = 'YES' ] || [ "$INS_CORE" = 'y' ] ;
     if ! $(docker exec -it $PROJECT_NAME-wordpress env sudo -u www-data wp core is-installed); then
         docker exec -it $PROJECT_NAME-wordpress env \
             sudo -u www-data wp core install \
-                --path="/var/www/html" \
-                --url="$LOCAL_PROTOCOL://localhost:$LOCAL_PORT" \
+                --path="/var/www/html$WP_INSTALL_DIR" \
+                --url="$LOCAL_PROTOCOL://localhost:$LOCAL_PORT$WP_INSTALL_DIR/" \
                 --title="$PROJECT_NAME" \
                 --admin_user=$WP_ADMIN_USER \
                 --admin_password=$WP_ADMIN_PASSWORD \
                 --admin_email=$WP_ADMIN_EMAIL
-        echo "$LOCAL_PROTOCOL://localhost:$LOCAL_PORT\nインストール完了"
+         echo "$LOCAL_PROTOCOL://localhost:$LOCAL_PORT$WP_INSTALL_DIR/\nインストール完了"
     else 
         echo "既にインストール済みです\n"
     fi
