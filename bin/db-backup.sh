@@ -12,7 +12,7 @@ TODAY=$(date "+%Y%m%d")
 echo "============================ \nタグを入力して下さい:[default:${TODAY}] " 
 read SUFFIX
 if [ -z ${SUFFIX} ]; then
-       SUFFIX=${today}
+       SUFFIX=${TODAY}
 fi
 docker exec -it ${PROJECT_NAME}-mysql \
     /usr/bin/mysqldump --defaults-extra-file=/etc/mysql.conf wordpress > \
