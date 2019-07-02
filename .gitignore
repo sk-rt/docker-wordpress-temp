@@ -1,22 +1,6 @@
-public/wp-*.php
-public/xmlrpc.php
-public/index.php
-public/.htaccess
-public/license.txt
-public/readme.html
-public/wp-admin
-public/wp-includes
-public/wp-content/uploads
-public/wp-content/upgrade
-public/wp-content/index.php
-public/wp-content/plugins
-public/wp-content/languages
-public/wp-content/themes/*.php
-twentynineteen
-twentyseventeen
-twentysixteen
-twentyfifteen
+# --------------------------------------
+# For Project
+# --------------------------------------
 
+# Datebase
 .db-data/*
-
-__trash

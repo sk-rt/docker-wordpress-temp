@@ -4,7 +4,7 @@ services:
     build: ./.docker-image/db
     container_name: '${PROJECT_NAME}-mysql'
     ports:
-      - "3306:3306"
+      - "${MYSQL_PORT}:3306"
     volumes:
       - ./.db-data:/var/lib/mysql
     environment:
@@ -25,6 +25,7 @@ services:
       - db
     volumes:
       - ./public:/var/www/html
+    working_dir: /var/www/html${WP_INSTALL_DIR}
     environment:
       WORDPRESS_DB_HOST: db:3306
       WORDPRESS_DB_USER: wordpress

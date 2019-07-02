@@ -7,11 +7,13 @@
 PROJECT_NAME=my-wordpress
 LOCAL_PROTOCOL=http
 LOCAL_PORT=8080
+MYSQL_PORT=3306
 WP_LOCALE=ja
 WP_ADMIN_USER=admin
 WP_ADMIN_PASSWORD=admin
 WP_ADMIN_EMAIL=admin@example.com
 WP_THEME_NAME=mytheme
+WP_INSTALL_DIR=/
 WP_REQUIED_PLUGINS="classic-editor custom-post-type-permalinks wp-multibyte-patch"
 ```
 ## セットアップ（初回のみ）
