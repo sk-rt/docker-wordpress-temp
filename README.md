@@ -3,18 +3,18 @@
 ## 環境設定
 `.env`ファイルを編集
 ＊設定例
-```
-PROJECT_NAME=my-wordpress
-LOCAL_PROTOCOL=http
-LOCAL_PORT=8080
-MYSQL_PORT=3306
-WP_LOCALE=ja
-WP_ADMIN_USER=admin
+```bash
+PROJECT_NAME=my-wordpress # コンテナ ネームスペース
+LOCAL_PROTOCOL=http # http or https 
+LOCAL_PORT=8080 # WordPressの動作するポート
+MYSQL_PORT=3306 # mySqlのポート
+WP_LOCALE=ja # 言語設定
+WP_ADMIN_USER=admin # WordPress管理者アカウント
 WP_ADMIN_PASSWORD=admin
 WP_ADMIN_EMAIL=admin@example.com
-WP_THEME_NAME=mytheme
-WP_INSTALL_DIR=/
-WP_REQUIED_PLUGINS="classic-editor custom-post-type-permalinks wp-multibyte-patch"
+WP_THEME_NAME=mytheme # テーマディレクトリ名
+WP_INSTALL_DIR=/ # インストールディレクトリ
+WP_REQUIED_PLUGINS="classic-editor custom-post-type-permalinks wp-multibyte-patch" # 必須プラグイン(スペース区切り)
 ```
 ## セットアップ（初回のみ）
 ### Dockerの起動
@@ -44,19 +44,19 @@ sh bin/db-backup.sh
 sh bin/db-import.sh
 ```
 ## wp-cli
-＊`PROJECT_NAME`は.envの`PROJECT_NAME`
+＊`${PROJECT_NAME}`は.envの`PROJECT_NAME`
 ```sh
 # wordpressコンテナに入る
-docker exec -it PROJECT_NAME-wordpress /bin/bash
+docker exec -it ${PROJECT_NAME}-wordpress /bin/bash
 # www-dataユーザーでwpコマンド実行
 sudo -u www-data wp --info
 ```
 ## SQL
-＊`PROJECT_NAME`は.envの`PROJECT_NAME`
+＊`${PROJECT_NAME}`は.envの`PROJECT_NAME`
 ```sh
 # mysqlコンテナに入りrootでログイン
-docker exec -it PROJECT_NAME-mysql /usr/bin/mysql -u root -p
-Entar Password: root
+docker exec -it ${PROJECT_NAME}-mysql /usr/bin/mysql -u root -p
+Enter Password: root
 # mysqlコマンド実行
 mysql> show databases;
 ```
