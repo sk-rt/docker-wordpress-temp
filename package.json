@@ -1,0 +1,72 @@
+{
+  "name": "wp-starter-width-fornt",
+  "version": "1.0.0",
+  "description": "WordPress Starter With Frontend",
+  "main": "src/main.js",
+  "author": "sk_rt",
+  "license": "MIT",
+  "private": false,
+  "browserslist": [
+    "last 2 versions",
+    "ie >= 11",
+    "Android >= 4.4",
+    "ios_saf >= 8"
+  ],
+  "scripts": {
+    "start": "npm-run-all -p watch:*",
+    "dist": "npm-run-all clean-dist dist:*",
+    "watch:webpack": "webpack --watch",
+    "dist:webpack": "NODE_ENV=production webpack -p",
+    "build:webpack": "webpack",
+    "watch:wp-theme": "npm run build:wp-theme -- -w",
+    "build:wp-theme": "cpx \"src/wp-theme/**/*\" public/wp-content/themes/ ",
+    "dist:wp-theme": "cpx \"src/wp-theme/**/*.{php,css,png}\" dist/wp-content/themes/ -v",
+    "dev:cpx": "cpx \"src/static/**/!(__*)\" public/assets/ ",
+    "watch:cpx": "npm run dev:cpx --watch",
+    "dist:cpx": "cpx \"src/static/**/!(__*)\" dist/assets/ ",
+    "init:docker": "docker-compose build && npm run build:wp-theme",
+    "start:docker": "docker-compose up -d",
+    "stop:docker": "docker-compose stop",
+    "lint:fix": "eslint src/**/*.ts --fix",
+    "clean-dist": "rimraf dist"
+  },
+  "husky": {
+    "hooks": {
+      "pre-commit": "lint-staged"
+    }
+  },
+  "lint-staged": {
+    "*.{ts,tsx}": [
+      "eslint --fix",
+      "git add"
+    ]
+  },
+  "devDependencies": {
+    "@typescript-eslint/eslint-plugin": "2.7.0",
+    "@typescript-eslint/parser": "^2.7.0",
+    "autoprefixer": "^9.7.1",
+    "browser-sync": "^2.26.7",
+    "browser-sync-webpack-plugin": "^2.2.2",
+    "cpx": "^1.5.0",
+    "css-loader": "^3.2.0",
+    "dotenv": "^8.2.0",
+    "eslint": "^6.6.0",
+    "eslint-config-prettier": "^6.5.0",
+    "eslint-loader": "^3.0.2",
+    "eslint-plugin-prettier": "^3.1.1",
+    "husky": "^3.0.9",
+    "lint-staged": "^9.4.2",
+    "mini-css-extract-plugin": "^0.8.0",
+    "node-sass": "^4.13.0",
+    "npm-run-all": "^4.1.5",
+    "postcss": "^7.0.21",
+    "postcss-loader": "^3.0.0",
+    "prettier": "^1.19.1",
+    "rimraf": "^3.0.0",
+    "sass-loader": "^8.0.0",
+    "ts-loader": "^6.2.1",
+    "typescript": "^3.7.2",
+    "webpack": "^4.41.2",
+    "webpack-cli": "^3.3.10"
+  }
+}

@@ -1,6 +1,19 @@
-# --------------------------------------
-# For Project
-# --------------------------------------
-
-# Datebase
+# enviroment
+.env
 .db-data/*
+node_modules
+
+# destination
+public
+dist
+
+# catch / log
+.sass-cache
+.idea
+.vscode
+.DS_Store
+logs
+*.log
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
