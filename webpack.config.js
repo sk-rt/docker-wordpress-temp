@@ -6,11 +6,11 @@ const BrowserSyncPlugin = require('browser-sync-webpack-plugin');
 const publicPath = 'assets/';
 let outputPath, devMode, sourceMap;
 if (process.env.NODE_ENV === 'production') {
-    outputPath = `${__dirname}/public/${publicPath}`;
+    outputPath = `${__dirname}/dist/${publicPath}`;
     devMode = 'production';
     sourceMap = false;
 } else {
-    outputPath = `${__dirname}/build/${publicPath}`;
+    outputPath = `${__dirname}/public/${publicPath}`;
     devMode = 'development';
     sourceMap = true;
 }
@@ -87,7 +87,7 @@ module.exports = {
         }),
         new BrowserSyncPlugin({
             proxy: `localhost:${process.env.LOCAL_PORT}`,
-            files: ['**/*.php', '**/*.html']
+            files: ['**/*.php']
         })
     ]
 };
