@@ -22,7 +22,7 @@
     "build:wp-theme": "cpx \"src/wp-theme/**/*\" public/wp-content/themes/ ",
     "dist:wp-theme": "cpx \"src/wp-theme/**/*.{php,css,png}\" dist/wp-content/themes/ -v",
     "dev:cpx": "cpx \"src/static/**/!(__*)\" public/assets/ ",
-    "watch:cpx": "npm run dev:cpx --watch",
+    "watch:cpx": "npm run dev:cpx -- --watch",
     "dist:cpx": "cpx \"src/static/**/!(__*)\" dist/assets/ ",
     "init:docker": "docker-compose build && npm run build:wp-theme",
     "start:docker": "docker-compose up -d",
