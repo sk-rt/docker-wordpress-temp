@@ -50,8 +50,6 @@ echo " > Plugins:$WP_REQUIED_PLUGINS"
 read -p "[y/n]: " INS_PLUGINS
 if [ "$INS_PLUGINS" = 'yes' ] || [ "$INS_PLUGINS" = 'YES' ] || [ "$INS_PLUGINS" = 'y' ] ; then
     docker exec -it $PROJECT_NAME-wordpress env \
-        sudo -u www-data wp plugin uninstall akismet hello
-    docker exec -it $PROJECT_NAME-wordpress env \
         sudo -u www-data wp plugin install $WP_REQUIED_PLUGINS --activate
     echo "必須プラグインをインストールしました\n"
 else
@@ -66,8 +64,6 @@ read -p "[y/n]: " INS_THEME
 if [ $INS_THEME = 'yes' ] || [ $INS_THEME = 'YES' ] || [ $INS_THEME = 'y' ] ; then
     docker exec -it $PROJECT_NAME-wordpress env \
         sudo -u www-data wp theme activate $WP_THEME_NAME
-    docker exec -it $PROJECT_NAME-wordpress env \
-        sudo -u www-data wp theme uninstall twentynineteen twentyseventeen twentysixteen twentyfifteen
     echo "テーマ'$WP_THEME_NAME'をアクティブにしました"
 else
   echo "[x] キャンセルしました\n"
